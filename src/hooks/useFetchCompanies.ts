@@ -1,17 +1,20 @@
 import {useCallback, useEffect, useState} from 'react';
 import {fetchFakeCompanies} from '../services/api';
+import {mergeSort} from '../lib/sotring';
+import {Company} from '../domain/company';
 
 export default function useFetchCompanies() {
-  const [companies, setCompanies] = useState([]);
+  const [companies, setCompanies] = useState<Company[]>([]);
 
-  const fetchCompanies = useCallback(async () => {
+  const fetchAndSortCompanies = useCallback(async () => {
     const fakeCompanies = await fetchFakeCompanies();
-    setCompanies(fakeCompanies);
+    const sortedCompanies = mergeSort(fakeCompanies);
+    setCompanies(sortedCompanies);
   }, []);
 
   useEffect(() => {
-    fetchCompanies();
-  }, [fetchCompanies]);
+    fetchAndSortCompanies();
+  }, [fetchAndSortCompanies]);
 
   return companies;
 }
