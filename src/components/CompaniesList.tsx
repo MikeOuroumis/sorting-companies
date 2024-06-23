@@ -12,7 +12,7 @@ export default function CompaniesList({companies}: Props) {
     <FlatList
       data={companies}
       renderItem={({item}) => <CompanyItem company={item} />}
-      keyExtractor={item => item.id}
+      keyExtractor={item => item.id.toString()}
     />
   );
 }

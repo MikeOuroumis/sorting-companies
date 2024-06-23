@@ -6,9 +6,5 @@ interface Props {
   company: Company;
 }
 export default function CompanyItem({company}: Props) {
-  return (
-    <View>
-      <Text>{company.name}</Text>
-    </View>
-  );
+  return <Text>{company.name}</Text>;
 }

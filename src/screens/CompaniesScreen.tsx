@@ -14,11 +14,11 @@ export default function CompaniesScreen() {
   return (
     <View>
       <SearchBar setQuery={setQuery} />
-      {executionTime && (
-        <Text style={{color: 'red'}}>
-          Executed in {executionTime.toFixed(2)} ms
-        </Text>
-      )}
+
+      <Text style={{color: 'red'}}>
+        Executed in {executionTime.toFixed(2)} ms
+      </Text>
+
       <CompaniesList companies={filteredCompanies} />
     </View>
   );
