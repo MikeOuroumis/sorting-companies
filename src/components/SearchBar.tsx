@@ -1,11 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, TextInput} from 'react-native';
-import useSearchCompany from '../hooks/useSearchCompany';
 
-export default function SearchBar() {
-  const [query, setQuery] = useState<string>('');
-  useSearchCompany(query);
+interface Props {
+  setQuery: (query: string) => void;
+}
 
+export default function SearchBar({setQuery}: Props) {
   return (
     <TextInput
       style={styles.container}

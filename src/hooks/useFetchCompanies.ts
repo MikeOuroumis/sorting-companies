@@ -7,10 +7,14 @@ export default function useFetchCompanies() {
   const [companies, setCompanies] = useState<Company[]>([]);
 
   const fetchAndSortCompanies = useCallback(async () => {
+    if (companies.length > 0) {
+      return;
+    }
+
     const fakeCompanies = await fetchFakeCompanies();
     const sortedCompanies = mergeSort(fakeCompanies);
     setCompanies(sortedCompanies);
-  }, []);
+  }, [companies.length]);
 
   useEffect(() => {
     fetchAndSortCompanies();
