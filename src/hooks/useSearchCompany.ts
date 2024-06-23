@@ -4,10 +4,16 @@ import {searchCompanies} from '../lib/searching';
 
 export default function useSearchCompany(companies: Company[], query: string) {
   const [filteredCompanies, setFilteredCompanies] = useState<Company[]>([]);
+  const [executionTime, setExecutionTime] = useState<number>(0);
 
   useEffect(() => {
-    setFilteredCompanies(searchCompanies(companies, query));
+    const startTime = performance.now();
+    const result = searchCompanies(companies, query);
+    const endTime = performance.now();
+
+    setFilteredCompanies(result);
+    setExecutionTime(endTime - startTime);
   }, [query, companies]);
 
-  return filteredCompanies;
+  return {filteredCompanies, executionTime};
 }
